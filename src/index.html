@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/STEAMDOOM PNG.png" type="image/x-icon">
+
+    <!-- HOJAS DE ESTILO DE TERCEROS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css'>
+
+    <!-- HOJAS DE ESTILO PROPIAS -->
+    <link rel="stylesheet" href="./css/general.css">
+    <link rel="stylesheet" href="./css/WinContent.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+    <title>LuisAldrichGuz</title>
+
+</head>
+
+<body>
+
+    <!---------------------------------- BARRA DE INICIO --------------------------------------->
+
+    <nav id="menuBar">
+        <a id="menuStart">
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Unofficial_Windows_logo_variant_-_2002%E2%80%932012_%28Multicolored%29.svg/1161px-Unofficial_Windows_logo_variant_-_2002%E2%80%932012_%28Multicolored%29.svg.png">
+            <h1>start</h1>
+        </a>
+
+        <div id="statusBar">
+
+        </div>
+    </nav>
+
+    <!---------------------------------- MENU DE INICIO --------------------------------------->
+
+
+    <div id="menu" class="menu-hidden">
+        <div class="topMenu">
+            <img src="https://avatars.cloudflare.steamstatic.com/3f9aa634852ba6debedbe4afd505f96150e757f0_full.jpg">
+            <h2>LuisAldrichGuz</h2>
+        </div>
+
+
+        <div class="appMenu"><!-- MENU DE APLICACIONES -->
+            <ul class="apps">
+                <li><a href="#" class="target" data-app="Calculadora"><i class="fas fa-calculator"></i> Calculadora</a>
+                </li>
+                <li><a href="#" class="target" data-app="Paint"><i class="fas fa-paint-brush"></i> Paint</a></li>
+                <li><a href="#" class="target" data-app="Explorer"><i class="fas fa-globe"></i> luisaldrichguz.com</a>
+                </li>
+                <li><a href="#" class="target" data-app="PDF"><i class="far fa-file-pdf"></i> LuisAldrichGuz CV</a></li>
+
+            </ul>
+        </div>
+        <div class="configMenu"><!-- MENU DE CONFIGURACIONES -->
+
+
+        </div>
+
+
+        <div class="fotterMenu"><!-- MENU DE APAGAR -->
+        </div>
+    </div>
+
+    <!---------------------------------- VENTANAS DE WINDOWS --------------------------------------->
+
+    <div class="window Explorer" style="display: none;"><!-- VENTANA DE PORTAFOLIO DE WINDOWS -->
+        <div class="title-bar"><i class="fab fa-internet-explorer"></i>
+            <h5>luisaldrichguz.com</h5><!-- CONTENIDO DE VENTANA -->
+
+            <div class="title-btn">
+                <a class="btn m"><i class="fas fa-minus"></i></a>
+                <a class="btn M"><i class="fas fa-window-maximize"></i></a>
+                <a class="btn X"><i class="fas fa-times"></i></a>
+            </div>
+
+        </div>
+        <div class="content">
+            <iframe src="https://luisaldrichguz.com" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <div class="window PDF"><!-- VENTANA DE WINDOWS XP -->
+        <div class="title-bar"><i class="fas fa-file-pdf pdf-icon"></i>
+            <h5>LuisAldrichGuz_CV_ENG.pdf</h5><!-- CONTENIDO DE VENTANA -->
+
+            <div class="title-btn">
+                <a class="btn m"><i class="fas fa-minus"></i></a>
+                <a class="btn M"><i class="fas fa-window-maximize"></i></a>
+                <a class="btn X"><i class="fas fa-times"></i></a>
+            </div>
+
+        </div>
+        <div class="content">
+            <iframe src="./documents/LuisAldrichGuz-ENG.pdf" frameborder="0"></iframe>
+        </div>
+
+    </div>
+
+
+    <div class="window Paint" style="display: none;"><!-- VENTANA DE PAINT -->
+        <div class="title-bar"><i class="fas fa-paint-brush"></i>
+            <h5>Paint</h5><!-- CONTENIDO DE VENTANA -->
+            <!-- CONTENIDO DE VENTANA -->
+            <div class="title-btn">
+                <a class="btn m"><i class="fas fa-minus"></i></a>
+                <a class="btn M"><i class="fas fa-window-maximize"></i></a>
+                <a class="btn X"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+        <div class="content">
+            <!-- Contenido de la ventana -->
+            <iframe src="https://jspaint.app/#local:14dabd5d1c5f18" frameborder="0"></iframe>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="./js/WindowsXP.js"></script>
+
+</html>

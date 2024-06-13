@@ -1,0 +1,51 @@
+/* RESPONSIVE PARA MOVILES */
+@media (max-width: 600px) {
+
+    #menuBar {
+        position: fixed;
+        height: 10vw;
+        width: 100vw;
+        bottom: 0;
+    }
+
+    #menuStart {
+        position: fixed;
+        width: 30vw;
+        height: 10vw;
+        bottom: 0;
+    }
+
+    #menuStart h1 {
+        position: relative;
+        font-style: oblique;
+        color: rgb(255, 255, 255);
+        font-size: 5vw;
+        bottom: 2.5vw;
+        left: 1vw;
+    }
+
+    #menuBar img {
+        position: absolute;
+        width: 8vw;
+        left: 1.5vw;
+        top: 1vw;
+    }
+
+    #menu {
+        position: fixed;
+        width: 95vw;
+        height: 120vw;
+        bottom: 2.7vw;
+        left: 0.2vw;
+    }
+
+    #statusBar {
+        display: none;
+    }
+
+    .configMenu {
+        width: 50%;
+        height: 114vw;
+    }
+
+}

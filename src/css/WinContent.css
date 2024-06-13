@@ -1,0 +1,70 @@
+/* INTERNET EXPLORER */
+
+.Explorer {
+    width: 25em;
+    height: 45em;
+    z-index: 5;
+}
+
+.Explorer iframe {
+    width: 100%;
+    height: 42.5em;
+}
+
+/* PAINT */
+
+.Paint {
+    width: 50em;
+    z-index: 5;
+}
+
+.Paint iframe {
+    width: 100%;
+    height: 26em;
+}
+
+/* PDF VIEW */
+
+.PDF {
+    width: 30em;
+    height: 45em;
+}
+
+.PDF iframe {
+    width: 100%;
+    height: 42.5em;
+}
+
+
+@media (max-width: 600px) {
+
+    .Explorer {
+        width: 25em;
+        height: 35em;
+    }
+
+    .Explorer iframe {
+        width: 100%;
+        height: 32.5em;
+    }
+
+    .Paint {
+        width: 25em;
+        height: 35em;
+    }
+
+    .Paint iframe {
+        width: 100%;
+        height: 32.5em;
+    }
+
+    .PDF {
+        width: 25em;
+        height: 35em;
+    }
+
+    .PDF iframe {
+        width: 100%;
+        height: 32.5em;
+    }
+}
