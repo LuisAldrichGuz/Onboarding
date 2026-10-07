@@ -34,6 +34,15 @@ juego 3D, así que al menos soy coherente.
   habían caído para 2026, y el botón de inicio llevaba meses
   enseñando un icono roto. Por eso ya no hay ninguna.
 
+-- El fondo --------------------------------------------------------
+
+  La foto es «Oberon (AU), Hills -- 2019 -- 1851» de Dietmar Rabich,
+  de Wikimedia Commons, bajo CC BY-SA 4.0. La recorté, la espejé y le
+  subí el verde, así que esta versión va con la misma licencia.
+
+  No es la foto de Windows XP: esa tiene copyright de Microsoft y la
+  anterior estaba enlazada desde el blog de un tercero.
+
 -- Dónde está el código ------------------------------------------
 
   github.com/LuisAldrichGuz/Onboarding

@@ -27,8 +27,9 @@ abierta y el reloj va en hora.
 
 HTML, CSS y JavaScript a pelo. **Sin framework, sin paso de compilación y sin
 una sola dependencia externa**: ni un CDN, ni una fuente de Google, ni una
-imagen enlazada de otro sitio. Los iconos son SVG en línea y el fondo es un
-dibujo original —no la foto de Microsoft— de 2 KB.
+imagen enlazada de otro sitio. Los iconos son SVG en línea y el fondo es una
+foto de dominio compartido servida desde aquí (ver **Licencia**), no la de
+Microsoft.
 
 ```
 src/
@@ -57,7 +58,7 @@ sabía.
 | Estaba | Está |
 |---|---|
 | Iconos desde el CDN de Font Awesome | SVG en línea |
-| Fondo enlazado del blog de un tercero (foto con copyright de Microsoft) | Un SVG dibujado aquí, 2 KB |
+| Fondo enlazado del blog de un tercero (foto con copyright de Microsoft) | Una foto libre, servida desde aquí |
 | Banderita del botón de inicio desde Wikipedia — **devolvía 400** | SVG, 700 bytes |
 | Avatar desde el CDN de Steam | Una imagen de este repositorio |
 | Paint dentro de un iframe a `jspaint.app` | Fuera: era de otro, no mío |
@@ -90,6 +91,12 @@ de la VPS con él.
 
 ## Licencia
 
-El código es mío y se puede usar. Windows, Windows XP y el nombre Microsoft son
+**El fondo** es [«Oberon (AU), Hills — 2019 — 1851»](https://commons.wikimedia.org/wiki/File:Oberon_(AU),_Hills_--_2019_--_1851.jpg)
+de Dietmar Rabich (Wikimedia Commons), **CC BY-SA 4.0**. Está recortado,
+espejado y con el verde subido, así que `src/img/fondo.webp` va bajo esa misma
+licencia. **No** es la foto «Bliss» de Windows XP, que tiene copyright de
+Microsoft — la versión de 2024 la traía enlazada del blog de un tercero.
+
+El resto del código es mío y se puede usar. Windows, Windows XP y el nombre Microsoft son
 marcas de Microsoft Corporation: esto es un homenaje, no un producto suyo ni
 está asociado con ellos.
