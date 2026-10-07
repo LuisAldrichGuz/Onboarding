@@ -6,7 +6,7 @@
 const TEXTO = `== LuisAldrichGuz — Escritorio ==================================
 
 Esto es un escritorio de Windows XP que corre entero en el navegador.
-Lo escribí en 2024 como portafolio, cuando ya me gustaba más hacer
+Lo escribí en 2021 como portafolio, cuando ya me gustaba más hacer
 juguetes que páginas. El de hoy vive en luisaldrichguz.net y es un
 juego 3D, así que al menos soy coherente.
 
@@ -28,7 +28,7 @@ juego 3D, así que al menos soy coherente.
   CDN, ni una fuente de Google, ni una imagen enlazada de otro sitio.
   El fondo es un SVG dibujado a mano aquí dentro.
 
-  La versión de 2024 sí tenía cuatro: los iconos venían de Font
+  La versión de 2021 sí tenía cuatro: los iconos venían de Font
   Awesome, el fondo del blog de un tercero, la banderita del botón
   de inicio de Wikipedia y el avatar de Steam. Dos de las cuatro se
   habían caído para 2026, y el botón de inicio llevaba meses

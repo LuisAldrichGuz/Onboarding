@@ -1,12 +1,18 @@
-# Escritorio XP — el portafolio de 2024
+# Escritorio XP — el portafolio de 2021
 
 **Un escritorio de Windows XP que corre entero en el navegador.**
 → **[xp.luisaldrichguz.net](https://xp.luisaldrichguz.net)**
 
-Lo escribí en 2024 como portafolio, siendo *Microsoft Learn Student Ambassador*,
+Lo escribí en 2021 como portafolio, siendo *Microsoft Learn Student Ambassador*,
 cuando ya me gustaba más hacer juguetes que páginas. El de hoy
 ([luisaldrichguz.net](https://luisaldrichguz.net)) es un juego 3D, así que al
 menos soy coherente.
+
+El repo se llama `Onboarding` por la **plantilla** que el programa repartía y
+que forkeaban todos los embajadores para su página. A mí seguir plantillas no me
+gusta: la vacié y escribí esto. Éramos tantos que aquellas páginas no las
+revisaba nadie, así que ésta se quedó aquí cinco años sin que nadie la abriera —
+de ahí que se le cayeran cosas sin enterarme.
 
 ## Qué hay dentro
 
@@ -51,9 +57,9 @@ aparece sola en los tres sitios: icono, menú de inicio y barra de tareas.
 
 ## Qué se arregló en 2026
 
-La versión de 2024 dependía de **cinco sitios ajenos** y dos ya se habían
-caído. El botón de inicio llevaba meses enseñando un icono roto y nadie lo
-sabía.
+La versión de 2021 dependía de **cinco sitios ajenos** y dos ya se habían
+caído: el botón de inicio llevaba meses enseñando un icono roto. Eso es lo que
+le pasa a una página que nadie vuelve a abrir.
 
 | Estaba | Está |
 |---|---|
@@ -63,7 +69,7 @@ sabía.
 | Avatar desde el CDN de Steam | Una imagen de este repositorio |
 | Paint dentro de un iframe a `jspaint.app` | Fuera: era de otro, no mío |
 | Ventana con un iframe a `luisaldrichguz.com` — **dominio muerto** | Un IE con barra de direcciones que abre en pestaña nueva |
-| «Calculadora» en el menú **sin ventana detrás** | La calculadora, escrita |
+| «Calculadora» en el menú, pendiente de escribir | La calculadora, escrita |
 | Todo medido en `vw`: barra de 64 px en un monitor grande, reloj de 11 px en un portátil | `px` y `rem`, y una barra que mide lo que mide |
 | Sin `Content-Security-Policy` | Todo en `'self'`, sin una sola excepción |
 
@@ -95,7 +101,7 @@ de la VPS con él.
 de Dietmar Rabich (Wikimedia Commons), **CC BY-SA 4.0**. Está recortado,
 espejado y con el verde subido, así que `src/img/fondo.webp` va bajo esa misma
 licencia. **No** es la foto «Bliss» de Windows XP, que tiene copyright de
-Microsoft — la versión de 2024 la traía enlazada del blog de un tercero.
+Microsoft — la versión de 2021 la traía enlazada del blog de un tercero.
 
 El resto del código es mío y se puede usar. Windows, Windows XP y el nombre Microsoft son
 marcas de Microsoft Corporation: esto es un homenaje, no un producto suyo ni
