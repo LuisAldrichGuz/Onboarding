@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  La banderita del botón «start», dibujada aquí.
+
+  Antes era un hotlink a Wikipedia que hoy devuelve 400, así que el botón
+  llevaba meses enseñando el icono roto. Cuatro cuadros ondeando: 700 bytes y
+  no depende de nadie.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="skewY(-8) translate(0 6)">
+    <path d="M6 10 h24 v22 H4  z" fill="#f25022"/>
+    <path d="M34 9  h26 v23 H34 z" fill="#7fba00"/>
+    <path d="M4 36 h26 v22 H6  z" fill="#00a4ef"/>
+    <path d="M34 36 h26 v23 H34 z" fill="#ffb900"/>
+  </g>
+</svg>

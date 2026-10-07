@@ -1,0 +1,189 @@
+/* Lo de dentro de cada ventana: buscaminas, calculadora, navegador, bloc y CV. */
+
+/* ─────────────── Buscaminas ─────────────── */
+
+.mina-app {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background: #c0c0c0;
+}
+
+.mina-barra { display: flex; }
+.mina-nivel { flex: 1; font: inherit; }
+
+/* El marcador hundido de siempre: dos displays rojos y la cara en medio. */
+.mina-marcador {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 7px;
+  border: 2px inset #e8e8e8;
+}
+
+.mina-cuenta, .mina-tiempo {
+  padding: 1px 5px;
+  background: #000;
+  color: #f00;
+  font: bold 20px "DejaVu Sans Mono", Consolas, monospace;
+  letter-spacing: 1px;
+}
+
+.mina-cara {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 2px outset #e8e8e8;
+  background: #c0c0c0;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mina-cara:active { border-style: inset; }
+
+.mina-rejilla {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 9), 22px);
+  gap: 0;
+  justify-content: center;
+  padding: 4px;
+  border: 3px inset #e8e8e8;
+  background: #bdbdbd;
+}
+
+.mina-celda {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 2px outset #e8e8e8;
+  background: #c0c0c0;
+  font: bold 13px Tahoma, sans-serif;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mina-celda.abierta {
+  border: 1px solid #9a9a9a;
+  /* ⚠️ El borde abierto es 1px y el cerrado 2px: sin este relleno, destapar una
+     casilla movía un píxel a todas las de su fila. */
+  padding: 1px;
+  background: #d4d4d4;
+  cursor: default;
+}
+
+.mina-celda.boom { background: #d93025; }
+.mina-celda.marcada { cursor: default; }
+
+/* ─────────────── Calculadora ─────────────── */
+
+.calc {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 8px;
+  background: #ece9d8;
+  outline: none;
+}
+
+.calc-pantalla {
+  padding: 6px 8px;
+  border: 2px inset #e8e8e8;
+  background: #fff;
+  font: 22px "DejaVu Sans Mono", Consolas, monospace;
+  text-align: right;
+  /* Un resultado largo no debe ensanchar la ventana: se recorta y ya. */
+  overflow: hidden;
+  white-space: nowrap;
+  direction: rtl;
+}
+
+.calc-teclado {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.calc-teclado button {
+  border: 2px outset #e8e8e8;
+  background: #d8d8d8;
+  font: bold 15px Tahoma, sans-serif;
+  cursor: pointer;
+}
+
+.calc-teclado button:hover { background: #e6e6e6; }
+.calc-teclado button:active,
+.calc-teclado button.pulsada { border-style: inset; background: #c4c4c4; }
+.calc-op { color: #0b3c9c; }
+.calc-borrar { color: #b3261e; }
+
+/* ─────────────── Internet Explorer ─────────────── */
+
+.ie { display: flex; flex-direction: column; height: 100%; background: #fff; }
+
+.ie-barra {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  border-bottom: 1px solid #b4cde6;
+  background: #ece9d8;
+}
+
+.ie-barra input { flex: 1; min-width: 0; padding: 3px 6px; border: 2px inset #e8e8e8; font: inherit; }
+.ie-barra button { padding: 3px 14px; border: 2px outset #e8e8e8; background: #d8d8d8; font: inherit; cursor: pointer; }
+.ie-barra button:active { border-style: inset; }
+
+.ie-pagina { padding: 16px 20px; overflow: auto; }
+.ie-pagina h3 { margin: 0 0 12px; font-size: 16px; }
+.ie-pagina ul { margin: 0; padding: 0; list-style: none; }
+.ie-pagina li { margin-bottom: 14px; }
+.ie-pagina a { color: #0b3c9c; font-size: 14px; font-weight: bold; }
+.ie-pagina p { margin: 2px 0 0; color: #444; }
+.ie-nota { margin-top: 20px; padding-top: 12px; border-top: 1px solid #ddd; color: #666; font-style: italic; }
+
+/* ─────────────── Bloc de notas ─────────────── */
+
+.bloc {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: 0;
+  background: #fff;
+  font: 13px/1.45 "DejaVu Sans Mono", Consolas, monospace;
+  resize: none;
+  white-space: pre;
+  overflow: auto;
+}
+
+.bloc:focus { outline: none; }
+
+/* ─────────────── CV ─────────────── */
+
+.cv { display: flex; flex-direction: column; height: 100%; }
+
+.cv-barra {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  border-bottom: 1px solid #b4cde6;
+  background: #ece9d8;
+}
+
+.cv-barra button, .cv-bajar {
+  padding: 3px 12px;
+  border: 2px outset #e8e8e8;
+  background: #d8d8d8;
+  color: #000;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cv-barra button.activo { border-style: inset; background: #bcd3ef; }
+.cv-bajar { margin-left: auto; }
+
+.cv-marco { flex: 1; width: 100%; border: 0; }

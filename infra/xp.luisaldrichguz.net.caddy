@@ -1,0 +1,56 @@
+# El escritorio de Windows XP, en su propio subdominio de la VPS de
+# luisaldrichguz.net.
+#
+# ⚠️ **Subdominio y no una ruta del portafolio.** El sitio pide sus cosas con
+# rutas relativas a la raíz (`./css/…`, `./js/…`, `./img/…`), así que colgado de
+# algo como /xp/ el navegador las buscaría en la raíz del dominio y no cargaría
+# ni una.
+#
+# ⚠️ **Vive en /etc/caddy/sites.d/, subido por el ./scripts/deploy.sh de ESTE
+# repo.** Nunca desde el del portafolio: aquel deploy sobreescribe
+# /etc/caddy/Caddyfile entero y se llevaría por delante cualquier bloque escrito
+# allí. Misma convención que arena, threecraft y whools.
+xp.luisaldrichguz.net {
+	root * /srv/xp.luisaldrichguz.net
+	encode gzip zstd
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		X-Frame-Options SAMEORIGIN
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+		Cross-Origin-Opener-Policy same-origin
+
+		# Todo en 'self', sin una sola excepción, porque el escritorio no pide nada
+		# a nadie: los iconos son SVG en línea, el fondo es un SVG de este repo y
+		# la letra es la del sistema. La versión de 2024 necesitaba cinco dominios
+		# (cdnjs, i0.wp.com, Wikipedia, Steam y jspaint.app) y dos ya se habían
+		# caído.
+		#
+		# ⚠️ `frame-src 'self'` hace falta: el CV se ve en un <iframe> del propio
+		# sitio. Y NO hay 'unsafe-inline' en style-src — por eso el único `style=`
+		# que había en el HTML se fue a una clase.
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'"
+		-Server
+	}
+
+	# El PDF del CV se sirve para verse dentro del visor, no para descargarse de
+	# golpe: `inline` es lo que hace que el <iframe> lo pinte en vez de disparar
+	# una descarga.
+	@pdf path *.pdf
+	header @pdf Content-Disposition inline
+
+	# Nada lleva hash en el nombre, así que nada se cachea un año: una semana
+	# para lo que pesa, y la página siempre fresca para que un despliegue se note.
+	@estaticos path /css/* /js/* /img/* /documents/*
+	header @estaticos Cache-Control "public, max-age=604800"
+
+	@vivo path / /index.html
+	header @vivo Cache-Control "no-cache"
+
+	# Sin try_files: aquí no hay enrutado en el cliente, sólo una página real.
+	# Un 404 tiene que ser un 404 y no el escritorio arrancando en una URL
+	# inventada.
+	file_server
+}

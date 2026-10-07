@@ -1,0 +1,124 @@
+/*
+ * La carcasa de una ventana: barra de título, botones y el agarre de
+ * redimensionar.
+ *
+ * ⚠️ **La ventana se posiciona con `left/top` y mide con `width/height`, todo
+ * en píxeles.** Nada de `transform` para moverla: un `transform` en un ancestro
+ * convierte a esa caja en el bloque de referencia de cualquier `position:fixed`
+ * de dentro, y aquí dentro va contenido que no controlamos.
+ */
+
+.ventana {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  min-height: 140px;
+  border: 1px solid #0b3c9c;
+  border-radius: 7px 7px 0 0;
+  background: #ece9d8;
+  box-shadow: var(--sombra-ventana);
+}
+
+.ventana[hidden] { display: none; }
+
+/* La que tiene el foco se ve viva; las de atrás, apagadas. Es la única pista
+   de quién recibe el teclado. */
+.ventana .barra-titulo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 29px;
+  padding: 0 4px 0 7px;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, #0f5ad6 0%, #4e95f5 8%, #2f73e0 42%, #1b5fc4 92%, #0d3f93 100%);
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgb(0 0 0 / 55%);
+  cursor: move;
+}
+
+.ventana:not(.activa) .barra-titulo {
+  background: linear-gradient(180deg, #7b9fd4 0%, #a7c2e6 10%, #8aa9d8 50%, #7593c4 100%);
+}
+
+.barra-titulo svg { flex: none; width: 17px; height: 17px; }
+.barra-titulo h2 { flex: 1; margin: 0; font-size: 13px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+.botones { display: flex; gap: 2px; }
+
+.botones button {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 21px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 75%);
+  border-radius: 3px;
+  background: linear-gradient(180deg, #5a9df7, #2a6bd4);
+  box-shadow: inset 0 1px 2px rgb(255 255 255 / 55%);
+  color: #fff;
+  font: bold 13px Tahoma, sans-serif;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.botones button:hover { background: linear-gradient(180deg, #7fb6fa, #3f82e4); }
+.botones .cerrar { background: linear-gradient(180deg, #f08a73, #d0321a); }
+.botones .cerrar:hover { background: linear-gradient(180deg, #f6a894, #e2452a); }
+
+.cuerpo {
+  flex: 1;
+  min-height: 0;
+  margin: 3px;
+  border: 1px solid #94a7c4;
+  background: #fff;
+  overflow: auto;
+}
+
+/* El agarre de la esquina. ⚠️ Va DENTRO de la ventana y no en un pseudo-
+   elemento: un `::after` no recibe eventos de puntero por sí solo y había que
+   escuchar el `mousedown` en la ventana entera y adivinar si el clic cayó en la
+   esquina. Un elemento de verdad lo dice él. */
+.agarre {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  cursor: nwse-resize;
+  background:
+    linear-gradient(135deg, transparent 50%, #8ea2bf 50%, #8ea2bf 60%, transparent 60%),
+    linear-gradient(135deg, transparent 70%, #8ea2bf 70%, #8ea2bf 80%, transparent 80%);
+}
+
+/* Maximizada: ocupa todo menos la barra de tareas, y pierde el agarre. */
+.ventana.maxima {
+  inset: 0 0 var(--barra-alto) 0 !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0;
+}
+
+.ventana.maxima .barra-titulo { border-radius: 0; cursor: default; }
+.ventana.maxima .agarre { display: none; }
+
+/* ⚠️ Mientras se arrastra, los iframes se tapan. Un `<iframe>` se come los
+   eventos del puntero en cuanto el cursor entra en él, así que arrastrar una
+   ventana por encima de otra que tenga un iframe dejaba la ventana pegada a
+   mitad de camino. */
+body.arrastrando iframe { pointer-events: none; }
+body.arrastrando { cursor: move; }
+body.redimensionando { cursor: nwse-resize; }
+
+@media (max-width: 680px) {
+  /* En un teléfono no hay sitio para colocar ventanas: todas salen a pantalla
+     completa y se cambia entre ellas por la barra de tareas. */
+  .ventana {
+    inset: 0 0 var(--barra-alto) 0 !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0;
+  }
+  .ventana .agarre { display: none; }
+}

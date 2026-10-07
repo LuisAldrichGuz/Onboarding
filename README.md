@@ -1,42 +1,95 @@
-# Technical Onboarding Process
+# Escritorio XP — el portafolio de 2024
 
-Welcome to the GitHub repository for the [Microsoft Learn Student Ambassador](http://studentambassadors.microsoft.com/) Technical Onboarding Process. This is a template GitHub repository for Student Ambassadors to use in the technical onboarding experience.
+**Un escritorio de Windows XP que corre entero en el navegador.**
+→ **[xp.luisaldrichguz.net](https://xp.luisaldrichguz.net)**
 
-By completing this Technical Onboarding Process, you will grow your skills with Microsoft Azure, you will become trained on the use of GitHub, you will complete one of the requirements for program advancement, and you will also get a certificate that will recognize your new technical abilities! 
- 
-As you are navigating this technical onboarding, please reference our [GitHub Discussions](https://github.com/microsoft/SATechnicalOnboarding/discussions) to ask any questions! If you encounter any issues, you can [open a GitHub Issue](https://github.com/microsoft/SATechnicalOnboarding/issues). Make sure to review other Ambassadors’ questions to help or get help! 
+Lo escribí en 2024 como portafolio, siendo *Microsoft Learn Student Ambassador*,
+cuando ya me gustaba más hacer juguetes que páginas. El de hoy
+([luisaldrichguz.net](https://luisaldrichguz.net)) es un juego 3D, así que al
+menos soy coherente.
 
-> Note: Technical Onboarding was updated on April 18, 2023. See this Discussions post for more details https://github.com/microsoft/SATechnicalOnboarding/discussions/27
+## Qué hay dentro
 
-## Resources for Completing the Technical Onboarding
-Start here ➡️➡️ [Technical Onboarding Instructions](https://github.com/microsoft/SATechnicalOnboarding/blob/main/technical-onboarding-instructions.md)
+Ventanas de verdad: se arrastran por la barra de título, se redimensionan por
+la esquina, se minimizan, se maximizan (o doble clic en la barra) y se apilan
+según a cuál le hiciste clic. La barra de tareas lleva una entrada por ventana
+abierta y el reloj va en hora.
 
-[Technical Onboarding Troubleshooting Guide](https://github.com/microsoft/SATechnicalOnboarding/blob/main/troubleshooting-guide.md)
+| Aplicación | Qué es |
+|---|---|
+| **Currículum** | Mi CV en PDF, en español y en inglés. Abre en el idioma del navegador. |
+| **Buscaminas** | Completo: la primera casilla nunca es mina, los ceros se abren en cadena y el acorde de siempre — clic en un número que ya tiene sus banderas destapa el resto. Tres dificultades. |
+| **Calculadora** | Con teclado. Sin `eval`: guarda dos números y una operación, como la de verdad. |
+| **Internet Explorer** | Barra de direcciones y favoritos. Abre en pestaña nueva, no en un marco: mi portafolio manda `frame-ancestors 'self'` y hace bien. |
+| **Bloc de notas** | El léeme, dentro del propio escritorio. |
 
-## Suggested Materials for Learning About GitHub
-	
-[Introduction to GitHub](https://docs.microsoft.com/learn/modules/introduction-to-github/)
-	
-[Upload your project by using GitHub best practices](https://docs.microsoft.com/learn/modules/upload-project-github/)
-	
-[Communicate Effectively on GitHub by using Markdown](https://docs.microsoft.com/learn/modules/communicate-using-markdown/)
+## Cómo está hecho
 
+HTML, CSS y JavaScript a pelo. **Sin framework, sin paso de compilación y sin
+una sola dependencia externa**: ni un CDN, ni una fuente de Google, ni una
+imagen enlazada de otro sitio. Los iconos son SVG en línea y el fondo es un
+dibujo original —no la foto de Microsoft— de 2 KB.
 
-## Additional Resources
+```
+src/
+  index.html        la estructura y el juego de iconos SVG
+  css/
+    escritorio.css  fondo, iconos, barra de tareas, menú de inicio
+    ventanas.css    la carcasa de una ventana
+    apps.css        lo de dentro de cada aplicación
+  js/
+    escritorio.js   el catálogo de apps y todo lo que lo rodea
+    ventanas.js     el gestor de ventanas, y lo único que sabe de ventanas
+    apps/           una por archivo
+infra/              su bloque de Caddy
+scripts/deploy.sh   subir src/ al servidor
+```
 
-[Manage repository changes by using pull requests on GitHub](https://docs.microsoft.com/learn/modules/manage-changes-pull-requests-github/)
+Una aplicación nueva se da de alta en `APLICACIONES` (en `escritorio.js`) y
+aparece sola en los tres sitios: icono, menú de inicio y barra de tareas.
 
-[JavaScript for Beginners Video](https://www.youtube.com/watch?v=_EDM5aPVLmo&list=PLlrxD0HtieHhW0NCG7M536uHGOtJ95Ut2)
+## Qué se arregló en 2026
 
-[Static Web Apps Video](https://docs.microsoft.com/shows/azure-tips-and-tricks-static-web-apps/)
-	
-[Manage Git branches and workflows](https://docs.microsoft.com/learn/modules/manage-git-branches-workflows/)
-	
-[Settle competing commits by using merge conflict resolution on GitHub](https://docs.microsoft.com/learn/modules/resolve-merge-conflicts-github/)
-	
-[Build and deploy applications to Azure by using GitHub Actions](https://docs.microsoft.com/learn/modules/github-actions-cd/)
-	
-[Manage Source Control Learning Path](https://docs.microsoft.com/learn/paths/az-400-manage-source-control/)
+La versión de 2024 dependía de **cinco sitios ajenos** y dos ya se habían
+caído. El botón de inicio llevaba meses enseñando un icono roto y nadie lo
+sabía.
 
-# Thank you for completing the Technical Onboarding! 
-If you would like to provide feedback or suggestions, [open a GitHub Issue](https://github.com/microsoft/SATechnicalOnboarding/issues) and we'll be sure to look into your suggestions! 😊
+| Estaba | Está |
+|---|---|
+| Iconos desde el CDN de Font Awesome | SVG en línea |
+| Fondo enlazado del blog de un tercero (foto con copyright de Microsoft) | Un SVG dibujado aquí, 2 KB |
+| Banderita del botón de inicio desde Wikipedia — **devolvía 400** | SVG, 700 bytes |
+| Avatar desde el CDN de Steam | Una imagen de este repositorio |
+| Paint dentro de un iframe a `jspaint.app` | Fuera: era de otro, no mío |
+| Ventana con un iframe a `luisaldrichguz.com` — **dominio muerto** | Un IE con barra de direcciones que abre en pestaña nueva |
+| «Calculadora» en el menú **sin ventana detrás** | La calculadora, escrita |
+| Todo medido en `vw`: barra de 64 px en un monitor grande, reloj de 11 px en un portátil | `px` y `rem`, y una barra que mide lo que mide |
+| Sin `Content-Security-Policy` | Todo en `'self'`, sin una sola excepción |
+
+## Correrlo
+
+No hace falta nada: es estático.
+
+```sh
+python3 -m http.server --directory src 8080
+```
+
+⚠️ Con `file://` no arranca: `js/escritorio.js` es un módulo ES y el navegador
+los bloquea fuera de `http(s)`.
+
+## Desplegar
+
+```sh
+./scripts/deploy.sh
+```
+
+Sube `src/` a `/srv/xp.luisaldrichguz.net` e instala su bloque de Caddy. Valida
+el Caddyfile **entero** antes de recargar y repone el bloque anterior si
+protesta: un bloque mal escrito no tira sólo este sitio, tira los otros cuatro
+de la VPS con él.
+
+## Licencia
+
+El código es mío y se puede usar. Windows, Windows XP y el nombre Microsoft son
+marcas de Microsoft Corporation: esto es un homenaje, no un producto suyo ni
+está asociado con ellos.

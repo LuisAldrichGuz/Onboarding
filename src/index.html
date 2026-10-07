@@ -1,125 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./img/STEAMDOOM PNG.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuisAldrichGuz — Escritorio</title>
+  <meta name="description"
+    content="Un escritorio de Windows XP que corre en el navegador: ventanas que se arrastran y se redimensionan, buscaminas, calculadora y el CV de Luis Aldrich Guzmán. Sin frameworks y sin una sola dependencia externa.">
+  <meta name="author" content="Luis Aldrich Guzmán">
+  <link rel="canonical" href="https://xp.luisaldrichguz.net/">
 
-    <!-- HOJAS DE ESTILO DE TERCEROS -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css'>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LuisAldrichGuz — Escritorio">
+  <meta property="og:description"
+    content="Un escritorio de Windows XP en el navegador: ventanas de verdad, buscaminas y calculadora. HTML, CSS y JavaScript a pelo.">
+  <meta property="og:url" content="https://xp.luisaldrichguz.net/">
+  <meta property="og:image" content="https://xp.luisaldrichguz.net/img/fondo.svg">
 
-    <!-- HOJAS DE ESTILO PROPIAS -->
-    <link rel="stylesheet" href="./css/general.css">
-    <link rel="stylesheet" href="./css/WinContent.css">
-    <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="icon" href="./img/bandera.svg" type="image/svg+xml">
 
-    <title>LuisAldrichGuz</title>
-
+  <!-- ⚠️ Nada de CDN. La versión de 2024 traía Font Awesome, el fondo de un
+       blog ajeno, el logo de Wikipedia y el avatar de Steam: cuatro sitios que
+       podían caerse, y dos ya se habían caído. Ahora los iconos son SVG en
+       línea y todo lo demás vive en este repositorio. -->
+  <link rel="stylesheet" href="./css/escritorio.css">
+  <link rel="stylesheet" href="./css/ventanas.css">
+  <link rel="stylesheet" href="./css/apps.css">
 </head>
 
 <body>
 
-    <!---------------------------------- BARRA DE INICIO --------------------------------------->
+  <!-- Los iconos: un solo <svg> escondido con todos los dibujos dentro, que
+       luego se referencian con <use>. Un icono repetido no se dibuja dos
+       veces. -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="sprites" aria-hidden="true">
+    <symbol id="i-calc" viewBox="0 0 48 48">
+      <rect x="8" y="4" width="32" height="40" rx="3" fill="#dcdcdc" stroke="#6b6b6b" stroke-width="2"/>
+      <rect x="12" y="8" width="24" height="9" rx="1" fill="#9fd37a" stroke="#4a7a2c"/>
+      <g fill="#5a5a5a">
+        <rect x="12" y="21" width="6" height="5" rx="1"/><rect x="21" y="21" width="6" height="5" rx="1"/>
+        <rect x="30" y="21" width="6" height="5" rx="1"/><rect x="12" y="29" width="6" height="5" rx="1"/>
+        <rect x="21" y="29" width="6" height="5" rx="1"/><rect x="30" y="29" width="6" height="5" rx="1"/>
+        <rect x="12" y="37" width="15" height="5" rx="1"/><rect x="30" y="37" width="6" height="5" rx="1"/>
+      </g>
+    </symbol>
+    <symbol id="i-mina" viewBox="0 0 48 48">
+      <circle cx="24" cy="26" r="13" fill="#1d1d1d"/>
+      <rect x="22" y="6" width="4" height="10" fill="#1d1d1d"/>
+      <path d="M8 26h32M24 10v32" stroke="#1d1d1d" stroke-width="3"/>
+      <circle cx="19" cy="21" r="3.5" fill="#fff"/>
+      <path d="M26 4l3 3-3 3" stroke="#d93025" stroke-width="2.5" fill="none"/>
+    </symbol>
+    <symbol id="i-bloc" viewBox="0 0 48 48">
+      <path d="M11 4h18l8 8v32H11z" fill="#fff" stroke="#6b6b6b" stroke-width="2"/>
+      <path d="M29 4v8h8" fill="#e6e6e6" stroke="#6b6b6b" stroke-width="2"/>
+      <g stroke="#2b6cb0" stroke-width="2"><path d="M16 20h16M16 26h16M16 32h10"/></g>
+    </symbol>
+    <symbol id="i-pdf" viewBox="0 0 48 48">
+      <path d="M11 4h18l8 8v32H11z" fill="#fff" stroke="#6b6b6b" stroke-width="2"/>
+      <path d="M29 4v8h8" fill="#e6e6e6" stroke="#6b6b6b" stroke-width="2"/>
+      <rect x="8" y="24" width="32" height="13" rx="2" fill="#c8102e"/>
+      <text x="24" y="34" font-family="Tahoma,sans-serif" font-size="9" font-weight="bold" fill="#fff"
+        text-anchor="middle">PDF</text>
+    </symbol>
+    <symbol id="i-ie" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="16" fill="#1a7fd4"/>
+      <ellipse cx="24" cy="24" rx="22" ry="8" fill="none" stroke="#f0c419" stroke-width="3"
+        transform="rotate(-20 24 24)"/>
+      <path d="M16 26a8 8 0 0 1 16 0z" fill="#fff"/>
+    </symbol>
+    <symbol id="i-pc" viewBox="0 0 48 48">
+      <rect x="6" y="8" width="36" height="24" rx="2" fill="#dcdcdc" stroke="#6b6b6b" stroke-width="2"/>
+      <rect x="10" y="12" width="28" height="16" fill="#1a7fd4"/>
+      <path d="M18 32h12l2 8H16z" fill="#c9c9c9" stroke="#6b6b6b" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-paint" viewBox="0 0 48 48">
+      <path d="M30 6l12 12-18 18-12-12z" fill="#f0c419" stroke="#8a6d00" stroke-width="2"/>
+      <path d="M12 24L6 42l18-6z" fill="#d93025" stroke="#7a1a13" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-apagar" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="17" fill="#d93025"/>
+      <path d="M24 12v13" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+      <path d="M15 17a12 12 0 1 0 18 0" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </symbol>
+  </svg>
 
-    <nav id="menuBar">
-        <a id="menuStart">
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Unofficial_Windows_logo_variant_-_2002%E2%80%932012_%28Multicolored%29.svg/1161px-Unofficial_Windows_logo_variant_-_2002%E2%80%932012_%28Multicolored%29.svg.png">
-            <h1>start</h1>
-        </a>
+  <!-- ─────────────── EL ESCRITORIO ─────────────── -->
+  <!-- Los iconos salen de `APLICACIONES` en escritorio.js, no escritos aquí:
+       una app nueva se da de alta en un sitio y aparece en los tres (icono,
+       menú de inicio y barra de tareas). -->
+  <main id="escritorio" aria-label="Escritorio"></main>
 
-        <div id="statusBar">
+  <!-- ─────────────── BARRA DE TAREAS ─────────────── -->
+  <nav id="barra">
+    <button id="inicio" aria-haspopup="true" aria-expanded="false">
+      <img src="./img/bandera.svg" alt="" width="26" height="26">
+      <span>inicio</span>
+    </button>
 
-        </div>
-    </nav>
+    <!-- Un botón por ventana abierta. -->
+    <div id="tareas" role="group" aria-label="Ventanas abiertas"></div>
 
-    <!---------------------------------- MENU DE INICIO --------------------------------------->
+    <div id="bandeja">
+      <span id="reloj" aria-live="off">--:--</span>
+    </div>
+  </nav>
 
+  <!-- ─────────────── MENÚ DE INICIO ─────────────── -->
+  <div id="menu" class="oculto" role="menu" aria-label="Menú de inicio">
+    <header class="menu-cabeza">
+      <img src="./img/avatar.jpg" alt="" width="48" height="48">
+      <h1>LuisAldrichGuz</h1>
+    </header>
 
-    <div id="menu" class="menu-hidden">
-        <div class="topMenu">
-            <img src="https://avatars.cloudflare.steamstatic.com/3f9aa634852ba6debedbe4afd505f96150e757f0_full.jpg">
-            <h2>LuisAldrichGuz</h2>
-        </div>
-
-
-        <div class="appMenu"><!-- MENU DE APLICACIONES -->
-            <ul class="apps">
-                <li><a href="#" class="target" data-app="Calculadora"><i class="fas fa-calculator"></i> Calculadora</a>
-                </li>
-                <li><a href="#" class="target" data-app="Paint"><i class="fas fa-paint-brush"></i> Paint</a></li>
-                <li><a href="#" class="target" data-app="Explorer"><i class="fas fa-globe"></i> luisaldrichguz.com</a>
-                </li>
-                <li><a href="#" class="target" data-app="PDF"><i class="far fa-file-pdf"></i> LuisAldrichGuz CV</a></li>
-
-            </ul>
-        </div>
-        <div class="configMenu"><!-- MENU DE CONFIGURACIONES -->
-
-
-        </div>
-
-
-        <div class="fotterMenu"><!-- MENU DE APAGAR -->
-        </div>
+    <div class="menu-cuerpo">
+      <ul id="menu-apps" class="menu-col"></ul>
+      <ul class="menu-col menu-col--derecha">
+        <li><a href="https://luisaldrichguz.net" target="_blank" rel="noopener">Mi portafolio</a></li>
+        <li><a href="https://github.com/LuisAldrichGuz" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/luis-aldrich-guzm%C3%A1n-4751b8279/" target="_blank"
+              rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:luisaldrichguz@hotmail.com">Correo</a></li>
+      </ul>
     </div>
 
-    <!---------------------------------- VENTANAS DE WINDOWS --------------------------------------->
+    <footer class="menu-pie">
+      <button id="apagar" type="button">
+        <svg width="20" height="20" aria-hidden="true"><use href="#i-apagar"/></svg>
+        Apagar equipo
+      </button>
+    </footer>
+  </div>
 
-    <div class="window Explorer" style="display: none;"><!-- VENTANA DE PORTAFOLIO DE WINDOWS -->
-        <div class="title-bar"><i class="fab fa-internet-explorer"></i>
-            <h5>luisaldrichguz.com</h5><!-- CONTENIDO DE VENTANA -->
+  <!-- La pantalla de apagado. Vive aquí y no se crea al vuelo porque tiene que
+       poder taparlo todo al instante, sin esperar a pintar nada. -->
+  <div id="apagado" hidden>
+    <p>Windows se está cerrando…</p>
+    <button type="button" id="encender">Encender de nuevo</button>
+  </div>
 
-            <div class="title-btn">
-                <a class="btn m"><i class="fas fa-minus"></i></a>
-                <a class="btn M"><i class="fas fa-window-maximize"></i></a>
-                <a class="btn X"><i class="fas fa-times"></i></a>
-            </div>
-
-        </div>
-        <div class="content">
-            <iframe src="https://luisaldrichguz.com" frameborder="0"></iframe>
-        </div>
-    </div>
-
-    <div class="window PDF"><!-- VENTANA DE WINDOWS XP -->
-        <div class="title-bar"><i class="fas fa-file-pdf pdf-icon"></i>
-            <h5>LuisAldrichGuz_CV_ENG.pdf</h5><!-- CONTENIDO DE VENTANA -->
-
-            <div class="title-btn">
-                <a class="btn m"><i class="fas fa-minus"></i></a>
-                <a class="btn M"><i class="fas fa-window-maximize"></i></a>
-                <a class="btn X"><i class="fas fa-times"></i></a>
-            </div>
-
-        </div>
-        <div class="content">
-            <iframe src="./documents/LuisAldrichGuz-ENG.pdf" frameborder="0"></iframe>
-        </div>
-
-    </div>
-
-
-    <div class="window Paint" style="display: none;"><!-- VENTANA DE PAINT -->
-        <div class="title-bar"><i class="fas fa-paint-brush"></i>
-            <h5>Paint</h5><!-- CONTENIDO DE VENTANA -->
-            <!-- CONTENIDO DE VENTANA -->
-            <div class="title-btn">
-                <a class="btn m"><i class="fas fa-minus"></i></a>
-                <a class="btn M"><i class="fas fa-window-maximize"></i></a>
-                <a class="btn X"><i class="fas fa-times"></i></a>
-            </div>
-        </div>
-        <div class="content">
-            <!-- Contenido de la ventana -->
-            <iframe src="https://jspaint.app/#local:14dabd5d1c5f18" frameborder="0"></iframe>
-        </div>
-    </div>
-
-
+  <script type="module" src="./js/escritorio.js"></script>
 </body>
-
-<script src="./js/WindowsXP.js"></script>
 
 </html>
